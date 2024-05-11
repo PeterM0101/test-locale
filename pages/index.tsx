@@ -2,7 +2,7 @@ import { Inter } from "next/font/google";
 import {useTranslation} from "next-i18next";
 import {useRouter} from "next/router";
 import {serverSideTranslations} from "next-i18next/serverSideTranslations";
-import {GetStaticProps} from "next";
+import {GetServerSidePropsContext, GetStaticProps, GetStaticPropsContext} from "next";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,17 +16,21 @@ export default function Home() {
       className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
     >
       <button className={'border-2 rounded px-3 py-2 bg-red-300'} onClick={()=>{    void router.push(router.asPath, router.asPath, {
-        locale: router.locale === 'el' ? 'en' : 'el',
+        locale: router.locale.includes('el') ? 'en-CY' : 'el-CY',
       });}}>{locale}</button>
       {t("Hello World!")}
     </main>
   );
 }
 
-export const getStaticProps: GetStaticProps = async ({locale}) => {
+export const getStaticProps: GetStaticProps = async (context: GetServerSidePropsContext | GetStaticPropsContext) => {
+  const localeData = {
+    locale: context.locale.split("-").shift(),
+    defaultLocale: context.defaultLocale.split("-").shift(),
+  };
   return {
     props: {
-      ...(await serverSideTranslations(locale ?? 'en', ["common"]))
+      ...(await serverSideTranslations(localeData.locale, ["common"]))
     }
   };
 }
