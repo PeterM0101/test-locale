@@ -18,7 +18,7 @@ export default function Home() {
       <button className={'border-2 rounded px-3 py-2 bg-red-300'} onClick={()=>{    void router.push(router.asPath, router.asPath, {
         locale: router.locale.includes('el') ? 'en-CY' : 'el-CY',
       });}}>{locale}</button>
-      {t("Hello World!")}
+      {t("About us (Summary)")}
     </main>
   );
 }
@@ -30,7 +30,7 @@ export const getStaticProps: GetStaticProps = async (context: GetServerSideProps
   };
   return {
     props: {
-      ...(await serverSideTranslations(localeData.locale, ["common"]))
+      ...(await serverSideTranslations(localeData.locale, ["common","dashboard"]))
     }
   };
 }

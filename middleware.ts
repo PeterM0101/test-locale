@@ -61,7 +61,7 @@ export async function middleware(req: NextRequest) {
   let locale = req.nextUrl.locale;
   let needsRedirect = false;
   if (req.nextUrl.locale === i18n.defaultLocale) {
-    locale = req.cookies.get("NEXT_LOCALE")?.value || 'en-CY';
+    locale = req.cookies.get("NEXT_LOCALE")?.value || i18n.locales[1];
     // console.debug(`[SC] middleware new_locale=${locale} url=${req.url}`);
     req.nextUrl.locale = locale;
     req.cookies.set("NEXT_LOCALE", locale);
