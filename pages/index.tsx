@@ -7,7 +7,7 @@ import {GetServerSidePropsContext, GetStaticProps, GetStaticPropsContext} from "
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-  const {t} = useTranslation("common")
+  const {t} = useTranslation("dashboard")
   const {locale} = useRouter()
   console.log('locale: ', locale)
   const router = useRouter()
@@ -18,7 +18,7 @@ export default function Home() {
       <button className={'border-2 rounded px-3 py-2 bg-red-300'} onClick={()=>{    void router.push(router.asPath, router.asPath, {
         locale: router.locale.includes('el') ? 'en-CY' : 'el-CY',
       });}}>{locale}</button>
-      {t("About us (Summary)")}
+      {t("1st step")}
     </main>
   );
 }
@@ -30,7 +30,7 @@ export const getStaticProps: GetStaticProps = async (context: GetServerSideProps
   };
   return {
     props: {
-      ...(await serverSideTranslations(localeData.locale, ["common","dashboard"]))
+      ...(await serverSideTranslations(localeData.locale, ["dashboard"]))
     }
   };
 }
