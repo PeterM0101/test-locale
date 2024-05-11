@@ -1,4 +1,4 @@
-import "@/styles/globals.css";
+import "../styles/globals.css";
 import type {AppProps} from "next/app";
 import {appWithTranslation, UserConfig} from "next-i18next";
 import nextI18NextConfig from "../next-i18next.config.js";
