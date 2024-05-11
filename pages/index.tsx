@@ -15,7 +15,7 @@ export default function Home() {
     <main
       className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
     >
-      <button onClick={()=>{    void router.push(router.asPath, router.asPath, {
+      <button className={'border-2 rounded px-3 py-2 bg-red-300'} onClick={()=>{    void router.push(router.asPath, router.asPath, {
         locale: router.locale === 'el' ? 'en' : 'el',
       });}}>{locale}</button>
       {t("Hello World!")}
