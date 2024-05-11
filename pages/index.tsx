@@ -29,8 +29,6 @@ export const getStaticProps: GetStaticProps = async (context: GetServerSideProps
     defaultLocale: context.defaultLocale.split("-").shift(),
   };
   return {
-    props: {
-      ...(await serverSideTranslations(localeData.locale, ["dashboard"]))
-    }
+    props: await serverSideTranslations(localeData.locale, ["dashboard"])
   };
 }
