@@ -1,5 +1,5 @@
 import {useTranslation} from "next-i18next";
-import {GetServerSidePropsContext, GetStaticProps, GetStaticPropsContext} from "next";
+import {GetServerSideProps, GetServerSidePropsContext, GetStaticPropsContext} from "next";
 import {serverSideTranslations} from "next-i18next/serverSideTranslations";
 
 const About = () => {
@@ -7,7 +7,7 @@ const About = () => {
     return (<div><p>About page</p><p>{t("1st step")}</p></div>)
 }
 
-export const getStaticProps: GetStaticProps = async (context: GetServerSidePropsContext | GetStaticPropsContext) => {
+export const getServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext | GetStaticPropsContext) => {
     const localeData = {
         locale: context.locale.split("-").shift(),
         defaultLocale: context.defaultLocale.split("-").shift(),
