@@ -12,6 +12,7 @@ export const getServerSideProps: GetServerSideProps = async (context: GetServerS
         locale: context.locale.split("-").shift(),
         defaultLocale: context.defaultLocale.split("-").shift(),
     };
+    console.log('[MP] About.getServerSideProps localeData.locale: ',localeData.locale)
     return {
         props: {
             ...(await serverSideTranslations(localeData.locale, [
