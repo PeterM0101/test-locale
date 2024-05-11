@@ -78,8 +78,9 @@ export async function middleware(req: NextRequest) {
 
   // API
   if (
-    originalPathName.includes("/api/") ||
-    originalPathName.includes(process.env.NEXT_PUBLIC_JSONAPI_PATH)
+    originalPathName.includes("/api/")
+    //   ||
+    // originalPathName.includes(process.env.NEXT_PUBLIC_JSONAPI_PATH)
   ) {
     return;
   }
