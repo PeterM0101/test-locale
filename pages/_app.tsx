@@ -13,11 +13,7 @@ export default appWithTranslation(App, {
   localePath: (locale, namespace, missing) => {
     console.log('locale _app: ', locale)
 
-    const path = `./public/locales/${locale === 'default' ? 'en' : locale.split("-").shift()?.toLowerCase()}/${namespace}.json`;
-    // const path = `./public/locales/${locale
-    //     .split("-")
-    //     .shift()
-    //     .toLowerCase()}/${namespace}.json`;
+    const path = `./public/locales/${locale.split("-").shift()?.toLowerCase()}/${namespace}.json`;
     console.debug(
         `[SC] app.appWithTranslation locale=${locale}${" ".repeat(
             10 - locale.length
