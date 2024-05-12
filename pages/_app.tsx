@@ -12,8 +12,8 @@ export default appWithTranslation(App, {
     localePath: (locale, namespace) => {
         let basePath = '/locales'
         if (typeof window === 'undefined') {
-            basePath = require('path').resolve('./public/locales');
-            // require('path').resolve('./public/locales');
+            require('path').resolve('./public/locales');
+            basePath = './public/locales'
         }
         console.log("basePath: ", basePath)
         const _path = `${basePath}/${locale.split("-").shift()?.toLowerCase()}/${namespace}.json`
