@@ -1,6 +1,6 @@
 module.exports = {
   defaultNS: "common",
-  ns: ["common"],
+  ns: ["common", "dashboard"],
   i18n: {
     localeDetection: false,
     defaultLocale: 'default',

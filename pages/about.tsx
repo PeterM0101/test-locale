@@ -1,13 +1,15 @@
 import {useTranslation} from "next-i18next";
 import {GetServerSideProps, GetServerSidePropsContext, GetStaticPropsContext} from "next";
 import {serverSideTranslations} from "next-i18next/serverSideTranslations";
+import {ReactElement} from "react";
+import Layout from "../layouts/layout";
 
 const About = () => {
     const {t} = useTranslation('dashboard')
-    return (<div><p>About page</p><p>{t("1st step")}</p></div>)
+    return (<div><p>About page</p><p>{t("30 days after starting date")}</p></div>)
 }
 
-export const getServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext | GetStaticPropsContext) => {
+export const getStaticProps: GetServerSideProps = async (context: GetServerSidePropsContext | GetStaticPropsContext) => {
     const localeData = {
         locale: context.locale.split("-").shift(),
         defaultLocale: context.defaultLocale.split("-").shift(),
@@ -22,5 +24,9 @@ export const getServerSideProps: GetServerSideProps = async (context: GetServerS
         }
     };
 }
+
+About.getLayout = function getLayout(page: ReactElement) {
+    return <Layout>{page}</Layout>;
+};
 
 export default About;

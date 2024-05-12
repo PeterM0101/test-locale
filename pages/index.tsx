@@ -1,24 +1,19 @@
 import { Inter } from "next/font/google";
 import {useTranslation} from "next-i18next";
-import {useRouter} from "next/router";
 import {serverSideTranslations} from "next-i18next/serverSideTranslations";
 import {GetServerSidePropsContext, GetStaticProps, GetStaticPropsContext} from "next";
+import {ReactElement} from "react";
+import Layout from "../layouts/layout";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Home() {
+const Home = () => {
   const {t} = useTranslation("common")
-  const {locale} = useRouter()
-  console.log('locale: ', locale)
-  const router = useRouter()
   return (
     <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
+      className={`flex flex-col items-center justify-between p-24 ${inter.className}`}
     >
-      <button className={'border-2 rounded px-3 py-2 bg-red-300'} onClick={()=>{    void router.push(router.asPath, router.asPath, {
-        locale: router.locale.includes('el') ? 'en-CY' : 'el-CY',
-      });}}>{locale}</button>
-      {t("About us (Summary)")}
+    <p>{t("Access to the Seek4U CV Bank")}</p>
     </main>
   );
 }
@@ -38,3 +33,9 @@ export const getStaticProps: GetStaticProps = async (context: GetServerSideProps
     },
   };
 }
+
+Home.getLayout = function getLayout(page: ReactElement) {
+  return <Layout>{page}</Layout>;
+};
+
+export default Home;

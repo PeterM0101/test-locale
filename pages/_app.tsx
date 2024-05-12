@@ -2,9 +2,24 @@ import "../styles/globals.css";
 import type {AppProps} from "next/app";
 import {appWithTranslation, UserConfig} from "next-i18next";
 import nextI18NextConfig from "../next-i18next.config.js";
+import {NextPage} from "next";
+import {ReactElement, ReactNode} from "react";
 
-function App({Component, pageProps}: AppProps) {
-    return <Component {...pageProps} />;
+export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
+    getLayout?: (page: ReactElement) => ReactNode;
+};
+
+type AppPropsWithLayout = AppProps & {
+    Component: NextPageWithLayout;
+};
+
+function App({Component, pageProps}: AppPropsWithLayout) {
+    const getLayout = Component.getLayout ?? ((page) => page);
+    return <>
+        {getLayout(
+            <Component {...pageProps} />
+        )}
+    </>;
 }
 
 export default appWithTranslation(App, {

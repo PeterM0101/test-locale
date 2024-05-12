@@ -8,6 +8,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@headlessui/react": "^2.0.3",
+    "cookies-next": "^4.1.1",
     "i18next": "^23.11.4",
     "next": "14.2.3",
     "next-i18next": "^15.3.0",
