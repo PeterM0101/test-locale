@@ -10,14 +10,14 @@ function App({Component, pageProps}: AppProps) {
 export default appWithTranslation(App, {
     ...(nextI18NextConfig as UserConfig),
     localePath: (locale, namespace) => {
-        let basePath = '/locales'
-        if (typeof window === 'undefined') {
-            require('path').resolve('./public/locales');
-            basePath = './public/locales'
-        }
-        console.log("basePath: ", basePath)
-        const _path = `${basePath}/${locale.split("-").shift()?.toLowerCase()}/${namespace}.json`
-        console.log("_path: ", _path)
-        return _path
+        // let basePath = '/locales'
+        // if (typeof window === 'undefined') {
+        //     require('path').resolve('./public/locales');
+        //     basePath = './public/locales'
+        // }
+        // console.log("basePath: ", basePath)
+        // const _path =
+        // console.log("_path: ", _path)
+        return `./public/locales/${locale.split("-").shift()?.toLowerCase()}/${namespace}.json`
     }
 })
