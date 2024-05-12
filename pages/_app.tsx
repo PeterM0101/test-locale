@@ -9,5 +9,15 @@ function App({Component, pageProps}: AppProps) {
 
 export default appWithTranslation(App, {
     ...(nextI18NextConfig as UserConfig),
-    localePath: (locale, namespace) => `./public/locales/${locale.split("-").shift()?.toLowerCase()}/${namespace}.json`
+    localePath: (locale, namespace) => {
+        let basePath = '/locales'
+        if (typeof window === 'undefined') {
+            basePath = require('path').resolve('./public/locales');
+            // require('path').resolve('./public/locales');
+        }
+        console.log("basePath: ", basePath)
+        const _path = `${basePath}/${locale.split("-").shift()?.toLowerCase()}/${namespace}.json`
+        console.log("_path: ", _path)
+        return _path
+    }
 })
